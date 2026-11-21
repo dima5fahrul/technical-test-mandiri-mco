@@ -3,6 +3,11 @@
 A native Android app for browsing movies from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 Built with Kotlin and Jetpack Compose using Clean Architecture + MVVM.
 
+## Download
+
+The APK is available on [Google Drive](https://drive.google.com/drive/folders/13gU5v9XVlhjVp5PjZgbUbCKKiPwBjytK?usp=share_link).
+It requires Android 8.0 (API 26) or later. To install it, allow installs from unknown sources when Android asks.
+
 ## Features
 
 | # | User story | Where |
