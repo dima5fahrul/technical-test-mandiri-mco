@@ -36,8 +36,8 @@ import com.example.movieapp.presentation.common.EmptyContent
 import com.example.movieapp.presentation.common.ErrorContent
 import com.example.movieapp.presentation.common.LoadingContent
 import com.example.movieapp.presentation.common.UiState
-import com.example.movieapp.presentation.theme.CineScopeTheme
 import com.example.movieapp.presentation.theme.GenrePalette
+import com.example.movieapp.presentation.theme.TechnicalTestMovieAppTheme
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -138,7 +138,7 @@ private fun GenreCard(
 @Preview
 @Composable
 private fun GenreContentPreview() {
-    CineScopeTheme {
+    TechnicalTestMovieAppTheme {
         GenreContent(
             uiState = UiState.Success(listOf(Genre(28, "Action"), Genre(35, "Comedy"), Genre(18, "Drama"))),
             onGenreClick = {},

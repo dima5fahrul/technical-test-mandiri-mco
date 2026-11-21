@@ -16,7 +16,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
-fun CineScopeNavHost(navController: NavHostController = rememberNavController()) {
+fun TechnicalTestMovieAppNavHost(navController: NavHostController = rememberNavController()) {
     NavHost(navController = navController, startDestination = GenreRoute) {
         composable<GenreRoute> { entry ->
             GenreScreen(

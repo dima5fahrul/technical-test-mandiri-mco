@@ -1,4 +1,4 @@
-# CineScope
+# TechnicalTestMovieApp
 
 A native Android app for browsing movies from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 Built with Kotlin and Jetpack Compose using Clean Architecture + MVVM.

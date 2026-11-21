@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CineScope"
+rootProject.name = "TechnicalTestMovieApp"
 include(":app")
 include(":core")

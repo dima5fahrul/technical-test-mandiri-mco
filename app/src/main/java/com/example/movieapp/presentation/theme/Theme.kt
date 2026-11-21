@@ -31,7 +31,7 @@ private val LightColors =
     )
 
 @Composable
-fun CineScopeTheme(
+fun TechnicalTestMovieAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

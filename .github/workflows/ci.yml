@@ -39,5 +39,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: cinescope-debug-apk
+          name: technical-test-movie-app-debug-apk
           path: app/build/outputs/apk/debug/*.apk

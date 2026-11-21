@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CineScope</string>
+    <string name="app_name">TechnicalTestMovieApp</string>
 
     <string name="genre_title">Movie Genres</string>
     <string name="genre_subtitle">Pick a genre to discover movies</string>
