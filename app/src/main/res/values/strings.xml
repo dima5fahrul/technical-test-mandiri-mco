@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">CineScope</string>
+
+    <string name="genre_title">Movie Genres</string>
+    <string name="genre_subtitle">Pick a genre to discover movies</string>
+    <string name="genre_empty">No genres are available right now.</string>
+
+    <string name="movie_empty">No movies found for this genre.</string>
+    <string name="cd_poster">Poster of %1$s</string>
+    <string name="no_poster">No poster</string>
+
+    <string name="detail_overview">Overview</string>
+    <string name="detail_no_overview">No overview available.</string>
+    <string name="detail_trailer">Trailer</string>
+    <string name="detail_no_trailer">No trailer available for this movie.</string>
+    <string name="detail_watch_on_youtube">Watch on YouTube</string>
+    <string name="detail_reviews">User Reviews</string>
+    <string name="detail_reviews_action">See what viewers think about this movie</string>
+    <string name="detail_votes">%1$s votes</string>
+
+    <string name="review_title">User Reviews</string>
+    <string name="review_empty">No reviews yet for this movie.</string>
+    <string name="review_read_more">Read more</string>
+    <string name="review_show_less">Show less</string>
+
+    <string name="end_of_list">You\'ve reached the end</string>
+    <string name="error_title">Something went wrong</string>
+    <string name="error_no_internet">No internet connection. Check your network and try again.</string>
+    <string name="error_unauthorized">The TMDB API token is missing or invalid. Add a valid token to local.properties.</string>
+    <string name="error_not_found">We couldn\'t find what you were looking for.</string>
+    <string name="error_server">TMDB is having trouble right now. Please try again later.</string>
+    <string name="error_unknown">Something unexpected happened. Please try again.</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_back">Back</string>
+</resources>
