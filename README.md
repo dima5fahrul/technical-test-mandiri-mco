@@ -28,19 +28,34 @@ Built with Kotlin and Jetpack Compose using Clean Architecture + MVVM.
 
 ## Architecture
 
+Clean Architecture + MVVM, split into two modules. Each layer only talks to the one below it:
+
 ```
-app  (presentation)                      core (domain + data)
-─────────────────────────────            ─────────────────────────────────────────
-Compose screens                          domain/  models, IMovieRepository,
-   │ observe StateFlow / PagingData               MovieUseCase ← MovieInteractor
-ViewModels ───────── MovieUseCase ─────▶ data/    MovieRepository
-                                                     ├─ ApiService (Retrofit)
-Navigation (type-safe routes)                        ├─ TmdbPagingSource
-Koin modules                                         └─ ErrorMapper → AppError
+app · presentation
+  Compose screen (View)
+     │ user actions              ▲ StateFlow<UiState<T>> / Flow<PagingData<T>>
+     ▼                           │
+  ViewModel ─────────────────────┘
+     │
+core · domain
+  MovieUseCase  ◀── MovieInteractor
+     │ IMovieRepository
+core · data
+  MovieRepository         ApiResponse → Resource, DTO → domain model (DataMapper)
+     │
+  RemoteDataSource        safe calls → ApiResponse, Pager + TmdbPagingSource
+     │
+  ApiService (Retrofit) ──▶ TMDB API
 ```
 
-- `core` has no Android UI dependencies. It exposes `Resource<T>` for one-shot requests and
-  `Flow<PagingData<T>>` for paged lists.
+- **View** (Compose screens) renders state and forwards user actions. It holds no logic.
+- **ViewModel** exposes `StateFlow<UiState<T>>` for one-shot requests and `Flow<PagingData<T>>` for paged
+  lists, cached in `viewModelScope`.
+- **Domain** holds the models, the `IMovieRepository` contract and the `MovieUseCase` / `MovieInteractor`.
+  It depends on nothing else.
+- **Repository** maps `ApiResponse` into `Resource<T>` and DTOs into domain models.
+- **RemoteDataSource** is the only class that calls `ApiService`. It catches failures and wraps every
+  result as `ApiResponse.Success`, `Empty` or `Error`, and builds the pagers for endless scrolling.
 - Every failure is mapped to a typed `AppError`: `NoInternet`, `Unauthorized`, `NotFound`, `Server` or
   `Unknown`. The UI turns each one into a user-friendly message with a retry action.
 - Each screen renders an explicit state: loading, content, empty or error.
@@ -96,11 +111,11 @@ Requirements: JDK 21, Android SDK with platform `android-37.1`, min SDK 26.
 
 ## Tests
 
-The suite has 68 unit tests:
+The suite has 79 unit tests:
 
 - **core:** response parsing with null and unknown fields, DTO-to-domain mapping, trailer selection,
-  review text cleanup, error mapping, paging keys and limits, repository success and error paths, and the
-  use case.
+  review text cleanup, error mapping, paging keys and limits, remote data source success, empty and error
+  results, repository mapping, and the use case.
 - **app:** loading, success, empty, error and retry for each ViewModel, the paged ViewModels, the
   formatters, and the error-message mapping.
 
@@ -118,8 +133,14 @@ app/src/main/java/com/example/movieapp/
     ├── navigation/         Type-safe routes and NavHost
     └── theme/              Material 3 theme
 core/src/main/java/com/example/movieapp/core/
-├── data/                   Repository, paging source, error mapper, Retrofit API and DTOs
+├── data/
+│   ├── MovieRepository     ApiResponse → Resource, DTO → domain
+│   └── source/remote/
+│       ├── RemoteDataSource
+│       ├── network/        ApiService, ApiResponse, ErrorMapper, JSON config
+│       ├── paging/         TmdbPagingSource
+│       └── response/       DTOs
 ├── domain/                 Models, repository contract, use case
-├── di/                     Network and repository modules
-└── utils/                  DTO → domain mapper
+├── di/                     Network, data source and repository modules
+└── utils/                  DTO → domain mapper, review text cleaner
 ```

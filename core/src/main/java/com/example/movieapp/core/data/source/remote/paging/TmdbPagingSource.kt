@@ -1,9 +1,9 @@
-package com.example.movieapp.core.data.paging
+package com.example.movieapp.core.data.source.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.movieapp.core.data.source.remote.network.toAppError
 import com.example.movieapp.core.data.source.remote.response.PagedResponse
-import com.example.movieapp.core.data.toAppError
 import kotlin.coroutines.cancellation.CancellationException
 
 class TmdbPagingSource<T : Any>(

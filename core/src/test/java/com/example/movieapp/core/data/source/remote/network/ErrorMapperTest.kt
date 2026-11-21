@@ -1,4 +1,4 @@
-package com.example.movieapp.core.data
+package com.example.movieapp.core.data.source.remote.network
 
 import com.example.movieapp.core.domain.model.AppError
 import kotlinx.serialization.SerializationException
